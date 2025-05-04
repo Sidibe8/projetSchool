@@ -39,7 +39,7 @@ def get_time():
 def get_date():
     return datetime.now().strftime("%d/%m/%Y")
 
-locale.setlocale(locale.LC_TIME, "fr_FR.UTF-8")
+# locale.setlocale(locale.LC_TIME, "fr_FR.UTF-8")
 
 def get_day():
     return datetime.now().strftime("%A")
