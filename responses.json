@@ -15,20 +15,20 @@
       ]
     },
     "meteo": {
-      "keywords": ["météo", "temps", "pluie", "soleil", "neige", "vent", "orage", "nuage", "canicule", "gel"],
-      "reponses": [
-        "Aujourd'hui, le soleil a décidé de faire des heures sup ! ☀️",
-        "Prévision : 99% de chance que tu passes une bonne journée !",
-        "Attention, risque élevé de sourires aujourd'hui !",
-        "Il fait un temps à sortir... ou à rester sous la couette, au choix !",
-        "La météo dit : 'Fais ce qui te rend heureux, peu importe le temps' 🌈",
-        "Prévisions : éclaircies après le café, puis grand beau fixe !",
-        "Il pleut ? Parfait excuse pour manger du chocolat en pyjama !",
-        "Météo spéciale : alerte aux câlins si température descend sous 20°C !",
-        "Neige annoncée ? Attention aux batailles de boules de neige imprévues !",
-        "Vent violent ? Accroche bien ton sourire, qu'il ne s'envole pas !"
-      ]
-    },
+    "keywords": ["météo", "temps", "il fait", "climat"],
+    "reponses": [
+      "Il paraît qu’il fait {meteo} aujourd’hui… Parfait pour rester bien au chaud ou aller prendre l’air, selon l’humeur !",
+      "Actuellement : {meteo}. Une excellente excuse pour faire exactement ce que tu veux aujourd’hui.",
+      "Tu voulais la météo ? La voilà : {meteo}. C’est peut-être le bon moment pour une pause thé, non ? ☕",
+      "Selon mes capteurs ultra sophistiqués (bon, imaginaires), il fait {meteo} dehors.",
+      "Le ciel annonce : {meteo}. Mais n’oublie pas, ton humeur peut toujours être au beau fixe ! 🌈",
+      "Style météo du jour : {meteo}. Une belle ambiance pour improviser ta journée.",
+      "La météo aujourd’hui ? {meteo}. Mon conseil : fais de cette journée ce que tu veux, peu importe le temps.",
+      "{meteo} dehors ? Idéal pour une petite balade... ou une sieste bien méritée. À toi de choisir.",
+      "Prévision du jour : {meteo}. Prends un parapluie, des lunettes de soleil… ou les deux, on ne sait jamais !",
+      "Je viens de consulter les étoiles (et un site météo fiable) : {meteo} prévu pour aujourd’hui !"
+    ]
+  },
     "heure": {
       "keywords": ["heure", "horloge", "quelle heure", "temps", "minuit", "midi", "retard", "tôt", "tard", "chrono"],
       "reponses": [
