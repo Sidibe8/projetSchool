@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, json
 from datetime import datetime
-from babel.dates import format_datetime  # ✅ Pour afficher les jours en français sans locale système
 import pytz
+import locale
 import random
 import os
 import requests
 from bs4 import BeautifulSoup
-import wikipediaapi  # ✅ Librairie Wikipedia sans clé API
+import wikipediaapi
 
 app = Flask(__name__)
 
@@ -39,13 +39,14 @@ def get_time():
 def get_date():
     return datetime.now().strftime("%d/%m/%Y")
 
-def get_day():
-    now = datetime.now()
-    return format_datetime(now, "EEEE", locale='fr_FR')  # ✅ Jour en français sans locale système
+locale.setlocale(locale.LC_TIME, "fr_FR.UTF-8")
 
-def get_weather():
+def get_day():
+    return datetime.now().strftime("%A")
+
+def get_weather(city="Bamako"):
     try:
-        url = "https://wttr.in/Bamako?format=3"
+        url = f"https://wttr.in/{city}?format=3"
         response = requests.get(url)
         return response.text.strip()
     except:
@@ -55,36 +56,132 @@ def get_weather():
 # 🔍 Recherche Wikipedia sans clé API
 # ============================================
 
+
 def perform_web_search_scrape(query):
-    print(f"[DEBUG] Requête originale reçue : {query}")
-    
+    print(f"[DEBUG] 🔎 Requête reçue : {query}")
+
     try:
         wiki = wikipediaapi.Wikipedia(
             language='fr',
             user_agent='chatbot-flask/1.0 (contact: devscode3@gmail.com)'
         )
-        
+
         page = wiki.page(query)
-        print(f"[DEBUG] Titre Wikipedia : {page.title}")
-        print(f"[DEBUG] Page trouvée ? {'Oui' if page.exists() else 'Non'}")
+        print(f"[DEBUG] 🔍 Titre exact cherché : {query}")
+        print(f"[DEBUG] 📄 Titre trouvé : {page.title}")
+        print(f"[DEBUG] ✅ Page existe ? {'Oui' if page.exists() else 'Non'}")
 
         if page.exists():
-            summary = page.summary[:500] if page.summary else "Aucun résumé disponible."
+            print(f"[DEBUG] 📚 Résumé brut : {page.summary[:200]}...")
+
+            # 🔖 Vérification de l'image avec l'API REST
+            image_url = None
+            description = None
+            try:
+                title_encoded = page.title.replace(" ", "_")
+                img_api_url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{title_encoded}"
+                img_response = requests.get(img_api_url).json()
+                print(f"[DEBUG] 🖼️ Données image (REST) : {img_response}")
+                image_url = img_response.get("thumbnail", {}).get("source")
+                description = img_response.get("description")
+            except Exception as e:
+                print(f"[DEBUG] ⚠️ REST API image failed: {e}")
+
+            # 🔁 Fallback via pageimages si REST ne fournit pas d'image
+            if not image_url:
+                print("[DEBUG] 🔁 REST n'a pas fourni d'image, fallback via pageimages...")
+                try:
+                    fallback_url = "https://fr.wikipedia.org/w/api.php"
+                    fallback_params = {
+                        "action": "query",
+                        "titles": page.title,
+                        "prop": "pageimages",
+                        "format": "json",
+                        "pithumbsize": 500
+                    }
+                    fallback_response = requests.get(fallback_url, params=fallback_params).json()
+                    pages = fallback_response.get("query", {}).get("pages", {})
+                    for p in pages.values():
+                        image_url = p.get("thumbnail", {}).get("source")
+                        print(f"[DEBUG] ✅ Image de fallback trouvée : {image_url}")
+                        break
+                except Exception as e:
+                    print(f"[DEBUG] ⚠️ Erreur fallback image : {e}")
+
+            # Ajouter des liens internes pour les sections
+            section_links = []
+            for section in page.sections:
+                section_links.append({
+                    "section_title": section.title,
+                    "section_url": page.fullurl + "#" + section.title.replace(" ", "_")
+                })
+
+            # Renvoi des données sous forme de dictionnaire avec résumé complet
             return {
                 "type": "wikipedia",
                 "title": page.title,
-                "summary": summary,
-                "url": page.fullurl
-            }
-        else:
-            return {
-                "type": "error",
-                "message": f"Aucun article trouvé pour '{query}'",
-                "search_url": f"https://fr.wikipedia.org/wiki/Special:Search?search={query}"
+                "requested": query,
+                "summary": page.summary,  # Utilisation du résumé complet
+                "url": page.fullurl,
+                "image": image_url,
+                "description": description,
+                "sections": section_links  # Ajout des liens vers les sections
             }
 
+        # 🔁 Si pas trouvé, faire une recherche plus large
+        print("[DEBUG] ❌ Pas de correspondance exacte. Tentative de suggestion via API...")
+
+        search_url = f"https://fr.wikipedia.org/w/api.php"
+        params = {
+            "action": "query",
+            "list": "search",
+            "srsearch": query,
+            "format": "json"
+        }
+
+        response = requests.get(search_url, params=params)
+        data = response.json()
+        print(f"[DEBUG] 📦 Résultat brut de la recherche API : {json.dumps(data, indent=2, ensure_ascii=False)}")
+
+        if "query" in data and "search" in data["query"] and data["query"]["search"]:
+            best_match_title = data["query"]["search"][0]["title"]
+            print(f"[DEBUG] 🧠 Meilleure suggestion : {best_match_title}")
+
+            suggested_page = wiki.page(best_match_title)
+
+            if suggested_page.exists():
+                summary = suggested_page.summary  # Résumé complet
+                print(f"[DEBUG] 📚 Résumé suggéré : {summary[:200]}...")
+
+                # Miniature facultative
+                image_url = None
+                try:
+                    title_encoded = best_match_title.replace(" ", "_")
+                    img_api_url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{title_encoded}"
+                    img_response = requests.get(img_api_url).json()
+                    print(f"[DEBUG] 🖼️ Données image : {img_response}")
+                    image_url = img_response.get("thumbnail", {}).get("source")
+                except Exception as e:
+                    print(f"[DEBUG] ⚠️ Erreur image : {e}")
+
+                return {
+                    "type": "wikipedia",
+                    "title": suggested_page.title,
+                    "requested": query,
+                    "summary": summary,  # Résumé complet
+                    "url": suggested_page.fullurl,
+                    "image": image_url
+                }
+
+        print("[DEBUG] ❌ Aucun résultat dans la recherche API.")
+        return {
+            "type": "error",
+            "message": f"Aucun article trouvé pour '{query}'",
+            "search_url": f"https://fr.wikipedia.org/wiki/Special:Search?search={query}"
+        }
+
     except Exception as e:
-        print(f"[ERREUR] {e}")
+        print(f"[ERREUR] 🛑 Exception levée : {e}")
         return {
             "type": "error",
             "message": "Erreur lors de la recherche. Veuillez reformuler."
@@ -102,17 +199,21 @@ def home():
 def get_response():
     user_id = request.remote_addr
     user_message = request.form["question"].strip().lower()
-
     knowledge = load_knowledge()
     response = process_message(user_id, user_message, knowledge)
-    
     if isinstance(response, dict):
         return json.jsonify(response)
-    
-    return json.jsonify({
-        "type": "text",
-        "message": response
-    })
+    return json.jsonify({"type": "text", "message": response})
+
+def replace_placeholders(text):
+    dynamic_values = {
+        "heure": get_time(),
+        "date": get_date(),
+        "jour": get_day()
+    }
+    for tag, value in dynamic_values.items():
+        text = text.replace(f"{{{tag}}}", value)
+    return text
 
 # ============================================
 # 🤖 Traitement principal des messages
@@ -124,7 +225,11 @@ def process_message(user_id, message, knowledge):
     global conversation_context
 
     if message.startswith("/"):
-        return handle_command(user_id, message[1:].strip())
+        command_or_query = message[1:].strip()
+        known_commands = ["recherche", "aide"]
+        if command_or_query in known_commands:
+            return replace_placeholders(handle_command(user_id, command_or_query))
+        return perform_web_search_scrape(command_or_query)
 
     if user_id in conversation_context:
         context = conversation_context[user_id]
@@ -142,23 +247,18 @@ def process_message(user_id, message, knowledge):
         elif message in ["non", "no"]:
             return handle_negative_response(user_id)
 
-    command_map = {
-        "heure": ("get_time", "Il est {result}"),
-        "date": ("get_date", "Nous sommes le {result}"),
-        "jour": ("get_day", "Aujourd'hui, c'est {result}"),
-        "temps": ("get_weather", "{result}")
-    }
-
-    for keyword, (func_name, response_format) in command_map.items():
-        if keyword in message:
-            result = globals()[func_name]()
-            return response_format.format(result=result)
-
     if "reponses" in knowledge:
-        words = message.split()
         for key, data in knowledge["reponses"].items():
-            if any(kw in words for kw in data.get("keywords", [])):
-                return random.choice(data.get("reponses", []))
+            if any(kw in message for kw in data.get("keywords", [])):
+                raw_response = random.choice(data.get("reponses", []))
+                dynamic_values = {
+                    "heure": get_time(),
+                    "date": get_date(),
+                    "jour": get_day()
+                }
+                for tag, value in dynamic_values.items():
+                    raw_response = raw_response.replace("{" + tag + "}", value)
+                return raw_response
 
     for key, data in knowledge.items():
         if key == "reponses":
@@ -179,7 +279,6 @@ def handle_command(user_id, command):
     if command == "recherche":
         conversation_context[user_id] = {"mode": "recherche"}
         return "🔍 Mode recherche activé. Posez votre question, je vais essayer de trouver une réponse."
-
     elif command == "aide":
         return (
             "📋 Commandes disponibles :\n"
@@ -233,5 +332,4 @@ def handle_negative_response(user_id):
 # ============================================
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
-
+    app.run(debug=True)
