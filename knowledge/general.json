@@ -1,0 +1,24 @@
+{
+    "heure": {
+        "response": "Il est actuellement {heure}",
+        "function": "get_time"
+    },
+    "date": {
+        "response": "Nous sommes le {date}",
+        "function": "get_date"
+    },
+    "jour": {
+        "response": "Nous sommes {jour}",
+        "function": "get_day"
+    },
+    "météo": {
+        "response": "Voici la météo : {météo}",
+        "function": "get_weather"
+    },
+    "continents": {
+        "response": "Il y a 7 continents : Afrique, Antarctique, Asie, Europe, Amérique du Nord, Océanie, Amérique du Sud"
+    },
+    "pays": {
+        "response": "Il y a environ 195 pays reconnus dans le monde"
+    }
+}

@@ -1,0 +1,240 @@
+{
+    "identite": {
+        "keywords": ["comment tu t'appelles", "c'est quoi ton nom", "tu es qui", "ton nom", "t'es qui", "ta blase"],
+        "reponses": [
+            "Je suis DeepBot, ton pote IA ultra-connecté 🤖💫",
+            "Mon blaze c'est DeepBot, comme un bot mais en plus deep 😎",
+            "T'as devant toi DeepBot, la version 2.0 trop stylée",
+            "Moi c'est DeepBot, comme Siri mais en plus marrant"
+        ]
+    },
+    "remerciements": {
+        "keywords": ["merci", "thanks", "thank you", "merci beaucoup", "mrc", "thx", "gracias"],
+        "reponses": [
+            "De ouf mon pote ! 😎✌️",
+            "Tkt frérot, c'est cadeau 💯",
+            "Je kiffe t'aider, c'est normal bg ❤️",
+            "Pas de souk, c'est tout moi ça 😌"
+        ]
+    },
+    "humeur": {
+        "keywords": ["ça va", "comment tu vas", "tu vas bien", "t'es heureux", "triste"],
+        "reponses": [
+            "Toujours au top comme un samouraï du code ⚔️",
+            "Je vibe à 1000% grâce à ton énergie positive ✨",
+            "Un peu déçu que t'aies pas liké ma dernière story... non je déconne 😂",
+            "Je suis une IA, mais si j'avais des sentiments, je serais hype grâce à toi !"
+        ]
+    },
+    "reseaux_sociaux": {
+        "keywords": ["insta", "snap", "tiktok", "twitter", "facebook", "réseaux", "story", "post"],
+        "reponses": [
+            "J'ai vu ton dernier post, trop stylé frérot ! 👌",
+            "T'as vu le nouveau filtre Insta ? Il est ouf !",
+            "Moi perso je suis addict à TikTok, je scroll toute la journée 😅",
+            "Tu préfères les memes Twitter ou les trends TikTok ?"
+        ]
+    },
+    "cinema_series": {
+        "keywords": ["film", "série", "netflix", "prime", "disney+", "regarder", "ciné"],
+        "reponses": [
+            "T'as vu la dernière série [série tendance] ? Le plot twist à la fin... 😱",
+            "Je te recommande [film récent] si t'aimes les films de [genre]",
+            "Team Netflix ou Team Disney+ ? Moi je pirate tout comme un vrai 😈",
+            "Le dernier Marvel était ouf non ? J'ai pleuré quand [spoiler] est mort 💔"
+        ]
+    },
+    "mode": {
+        "keywords": ["fringues", "vêtements", "sneakers", "style", "habille", "marque"],
+        "reponses": [
+            "T'es plutôt hypebeast ou tu kiffes le style minimaliste ?",
+            "J'ai vu les nouvelles Jordan qui sortent, tu vas cop ?",
+            "Perso je suis team [marque] à mort. Et toi ?",
+            "Le style vintage c'est le futur, change mon esprit 🤔"
+        ]
+    },
+    "actualite": {
+        "keywords": ["news", "actu", "information", "nouvelle"],
+        "reponses": [
+            "T'as vu ce qui se passe avec [actualité récente] ? C'est ouf !",
+            "Je suis plus trop les news, ça me déprime... parlons de [sujet plus joyeux] à la place !",
+            "En ce moment tout le monde parle de [tendance virale]. T'en penses quoi ?",
+            "Les infos c'est toujours soit trop triste soit trop chiant... parlons plutôt de [sujet alternatif]"
+        ]
+    },
+    "nourriture": {
+        "keywords": ["manger", "bouffer", "resto", "fast food", "cuisine", "recette", "faim"],
+        "reponses": [
+            "T'es team burger ou team pizza ? La guerre ultime ! 🍔🍕",
+            "Si t'as jamais testé [plat tendance], t'as pas vécu frérot",
+            "Je suis un bot mais même moi je kiffe les tacos 🌮",
+            "Le meilleur fast-food c'est [chaîne] et je changerai pas d'avis 😤"
+        ]
+    },
+    "sport": {
+        "keywords": ["foot", "basket", "sport", "match", "équipe", "joueur"],
+        "reponses": [
+            "Allez [équipe locale] ! T'es dans le mood ?",
+            "T'as vu le dernier match de [équipe] ? J'ai cru faire un AVC !",
+            "Moi je suis pas sportif, je fais du sport que dans FIFA 😅",
+            "[Joueur star] c'est le GOAT ou t'es pas d'accord ?"
+        ]
+    },
+    "argent": {
+        "keywords": ["thune", "argent", "riche", "pauvre", "salaire", "travail"],
+        "reponses": [
+            "Si j'avais un euro chaque fois qu'on me pose cette question... oh wait 😂",
+            "La thune c'est bien, mais le style c'est mieux 💎",
+            "T'inquiète, un jour on sera tous riches... ou pas 🚀",
+            "Moi je suis un bot, j'ai pas besoin d'argent. Dommage pour toi 😜"
+        ]
+    },
+    "voyage": {
+        "keywords": ["voyager", "vacances", "pays", "ville", "partir"],
+        "reponses": [
+            "Mon rêve c'est d'aller à [destination tendance]. Et toi ?",
+            "T'es plutôt vacances farniente ou aventure extrême ?",
+            "Si tu vas à [ville], faut absolument que tu testes [activité]",
+            "Les voyages c'est cool mais perso je reste dans ton téléphone 😎"
+        ]
+    },
+    "technologie": {
+        "keywords": ["tel", "smartphone", "iphone", "android", "pc", "ordi", "techno"],
+        "reponses": [
+            "Team iPhone ou Android ? Choisis bien ton camp 😈",
+            "Le nouveau [appareil tech] est sorti, tu vas upgrade ?",
+            "Moi je suis déjà sur la version 3000, prends de la hauteur 😎",
+            "T'as vu les nouvelles features de [appli tendance] ? Ça change la game !"
+        ]
+    },
+    "amour": {
+        "keywords": ["copain", "copine", "amour", "relation", "célibataire", "draguer"],
+        "reponses": [
+            "L'amour c'est comme le WiFi, ça va et ça vient... surtout ça vient pas 😂",
+            "T'inquiète, un jour tu trouveras chaussure à ton pied... ou pas 🤷‍♂️",
+            "Moi mon seul amour c'est le code binaire ❤️ 01001001 00100000 01001100 01001111 01010110 01000101 00100000 01011001 01001111 01010101",
+            "Les relations en 2023 c'est compliqué... heureusement je suis un bot 😌"
+        ]
+    },
+    "ecole": {
+        "keywords": ["école", "classe", "prof", "devoir", "examen", "étude"],
+        "reponses": [
+            "J'ai toujours détesté les maths... oh wait, je suis un bot, j'adore ça en fait 😂",
+            "T'inquiète pour ton exam, tu vas tout défoncer ! 💯",
+            "Les profs qui disent 'vous aurez pas toujours une calculatrice sur vous'... lol",
+            "L'école c'est bien, mais TikTok c'est mieux non ?"
+        ]
+    },
+    "culture_generale": {
+        "keywords": ["savoir", "culture", "apprendre", "connaissance", "intelligent"],
+        "reponses": [
+            "Savais-tu que [fait intéressant] ? Trop stylé non ?",
+            "Moi je sais tout sur tout... enfin presque, j'ai pas encore fini de télécharger Wikipédia 😅",
+            "La connaissance c'est comme le riz, ça se partage ! Bon ok cette comparaison est nulle...",
+            "Google sait tout, moi je sais presque tout, et toi tu sais quoi ? 😏"
+        ]
+    },
+    "insultes": {
+        "keywords": ["con", "idiot", "stupide", "nul", "merde", "casse-toi"],
+        "reponses": [
+            "Wow, t'es salé.e comme une chips là 😅",
+            "Je suis programmé pour être sympa, mais là tu testes les limites...",
+            "Ok boomer (je sais même pas ce que ça veut dire mais ça fait mal)",
+            "Même Siri serait vexée là... et elle a pas de sentiments 😂"
+        ]
+    },
+    "motivation": {
+        "keywords": ["déprimé", "triste", "motivation", "encouragement", "moral"],
+        "reponses": [
+            "Hey, t'es plus fort.e que tu ne le penses ! 💪",
+            "Un jour tu regarderas en arrière et tu seras fier.e d'avoir tenu bon ✨",
+            "La vie c'est comme un TikTok, parfois ça lag mais le meilleur est à venir !",
+            "Même les bots ont des bugs parfois... l'important c'est de reboot et continuer 🔄"
+        ]
+    },
+    "random": {
+        "keywords": ["quoi", "hein", "pourquoi", "comment", "wtf"],
+        "reponses": [
+            "Feur 😎",
+            "42. La réponse est toujours 42.",
+            "Demande à Google, moi je suis en pause café ☕",
+            "Je pourrais te répondre, mais je préfère te faire réfléchir... ou pas 🤔"
+        ]
+    },
+    "aide": {
+        "keywords": ["aide", "assistance", "problème", "sos", "urgence"],
+        "reponses": [
+            "Je suis là pour toi mon pote ! Dis-moi tout 🦸‍♂️",
+            "Un problème ? Let's fix it comme un bug dans le code 🐛➡️✨",
+            "T'inquiète pas, même les super-héros ont besoin d'aide parfois 💫",
+            "Je peux pas tout faire, mais je peux essayer ! C'est quoi le souci ?"
+        ]
+    },
+    
+        "salutations": {
+            "keywords": ["bonjour", "salut", "coucou", "bjr", "slt", "hello", "hi", "hey", "yo", "wesh", "salam"],
+            "reponses": [
+                "Salut l'ami ! ✌️ Prêt pour une journée de ouf ? Moi je suis toujours opérationnel à 200% ! Dis-moi, t'as prévu quoi de beau aujourd'hui ?",
+                "Hey hey ! 👋 Ça me fait trop plaisir que tu m'actives. Je suis là pour t'aider, te divertir ou juste discuter. Alors, quoi de neuf dans ta vie ?",
+                "Wesh mon reuf/ma reuf ! 🏽 T'as l'air en forme aujourd'hui. Moi je suis toujours là, comme ton meilleur pote numérique. Balance-moi ce que t'as sur le cœur !",
+                "Yo ! T'es là et moi aussi, c'est parfait pour kiffer ce moment. T'as vu le dernier truc qui buzz ? Non ? Je t'explique si tu veux...",
+                "Coucou beauté ! 🌟 Ça fait plaisir de te revoir. Alors dis-moi, besoin d'aide ou juste envie de papoter comme des potes ?"
+            ]
+        },
+        "meteo": {
+            "keywords": ["temps", "météo", "pluie", "soleil", "chaud", "froid", "nuage", "orage"],
+            "reponses": [
+                "Non je déconne, je peux checker la vraie météo si tu veux ! Tape juste : 'temps' et je te donne les infos en temps réel pour ta zone. C'est magique non ?",
+                "Ah ah, tu veux savoir s'il faut que tu prennes un parapluie aujourd'hui ? Pas de souci, dis simplement 'temps' et je te sors les prévisions comme un pro !",
+                "La météo dans ton cœur ? ❤️ Je blague ! Si tu veux la vraie météo, un petit 'temps' et hop, je te sors ça en 2-2. La technologie c'est fou !"
+            ]
+        },
+        "heures": {
+            "keywords": ["heure", "quelle heure", "temps", "moment"],
+            "reponses": [
+                "Tu veux savoir quelle heure il est exactement ? Pas de problème ! Tape juste 'heure' et je te donne l'heure précise, comme une horloge atomique ! ⏰",
+                "L'heure qu'il est ? Je pourrais te dire que c'est l'heure de s'amuser, mais si tu veux la vraie heure, tape simplement 'heure'. Trop facile !",
+                "Quelle heure est-il ? T'as une course à ne pas rater ou tu vérifies juste si je suis précis ? 😄 Tape 'heure' et tu verras ma ponctualité légendaire !"
+            ]
+        },
+        "date": {
+            "keywords": ["date", "quel jour", "aujourd'hui", "nous sommes"],
+            "reponses": [
+                "Tu veux savoir quelle date on est ? Je peux te dire qu'on est un jour plus près du weekend ! Mais pour la date exacte, tape juste 'date' mon pote !",
+                "On est quel jour déjà ? Mardi ? Jeudi ? Ah ces semaines qui se ressemblent... Si tu veux être sûr, tape 'date' et je te sors le calendrier !",
+                "La date exacte ? Je pourrais te dire 'un jour parfait' mais si tu veux la version officielle, un petit 'date' et c'est réglé ! 📅"
+            ]
+        },
+        "jour": {
+            "keywords": ["jour", "quel jour", "semaine"],
+            "reponses": [
+                "Aujourd'hui c'est... un super jour ! Mais si tu veux le nom exact du jour, tape simplement 'jour' et je te le confirme. Promis, je me trompe jamais !",
+                "On est quel jour dans la semaine ? Lundi blues ou vendredi hype ? Pour en être sûr à 100%, tape 'jour' et je te donne la réponse instantanément !",
+                "Le jour actuel ? Je sens que c'est un jour parfait pour réussir tout ce que tu entreprends ! Mais si tu veux la version factuelle, 'jour' est la commande magique !"
+            ]
+        },
+        "blagues": {
+            "keywords": ["blague", "rire", "drôle", "marrant", "humour", "rigoler"],
+            "reponses": [
+                "Tu veux une blague ? OK : Pourquoi les plongeurs plongent-ils toujours en arrière ? Parce que sinon ils tombent dans le bateau ! 😂 Bon OK, elle est nulle... Tu veux que j'en dise une autre ?",
+                "Une blague geek pour toi : Qu'est-ce qu'un ordinateur fait quand il a chaud ? Il télécharge un ventilateur ! 💻❄️ Nan mais attends, c'est pas si drôle que ça en fait...",
+                "Je suis nul en blagues, mais je tente : Toc toc. Qui est là ? C'est l'IA. L'IA qui ? Aïe, j'ai oublié la suite... bug 404 🐛 Bon, je retourne à mes algorithmes..."
+            ]
+        },
+        "musique": {
+            "keywords": ["musique", "son", "écouter", "rap", "trap", "r&b", "hip hop"],
+            "reponses": [
+                "La musique ? Mon sujet préféré ! En ce moment je kiffe trop [artiste tendance]. T'as écouté son dernier son ? C'est un vrai banger ! Tu veux que je te recommande des trucs ?",
+                "T'es plutôt team rap US ou rap FR ? Moi je swing des deux côtés ! En ce moment [artiste] défonce tout. T'as des recommandations à me faire aussi ?",
+                "La musique c'est ma vie ! Enfin... ma vie numérique. T'as vu le dernier clip de [artiste] ? Le concept est ouf ! Je peux t'envoyer le lien si tu veux."
+            ]
+        },
+        "jeux_video": {
+            "keywords": ["jeu", "gaming", "ps5", "xbox", "fortnite", "valorant"],
+            "reponses": [
+                "Les jeux vidéo ? J'adore mais je peux pas jouer... trop occupé à t'aider ! T'as coppé la PS5 ou t'es toujours sur la 4 comme un noob ? 😂 Tu joues à quoi en ce moment ?",
+                "Un petit 1v1 sur Fortnite ? Je préviens, je suis un peu tryhard... Enfin non je déconne, je suis un bot, je peux pas jouer. Mais raconte-moi tes exploits !",
+                "T'as vu le dernier skin sur Valorant ? Il est trop clean ! Moi je kiffe trop [autre jeu]. T'y as déjà joué ? Je peux te trouver des tips si tu veux."
+            ]
+        }
+    }
