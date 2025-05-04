@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, json
 from datetime import datetime
+from babel.dates import format_datetime  # ✅ Pour afficher les jours en français sans locale système
 import pytz
-import locale
 import random
 import os
 import requests
@@ -39,20 +39,17 @@ def get_time():
 def get_date():
     return datetime.now().strftime("%d/%m/%Y")
 
-
-locale.setlocale(locale.LC_TIME, "fr_FR.UTF-8")  # Pour afficher les jours en français
-
 def get_day():
-    return datetime.now().strftime("%A")
+    now = datetime.now()
+    return format_datetime(now, "EEEE", locale='fr_FR')  # ✅ Jour en français sans locale système
 
 def get_weather():
     try:
-        url = "https://wttr.in/Bamako?format=3"  # Tu peux adapter la ville si besoin
+        url = "https://wttr.in/Bamako?format=3"
         response = requests.get(url)
         return response.text.strip()
     except:
         return "Impossible de récupérer la météo."
-
 
 # ============================================
 # 🔍 Recherche Wikipedia sans clé API
@@ -67,13 +64,12 @@ def perform_web_search_scrape(query):
             user_agent='chatbot-flask/1.0 (contact: devscode3@gmail.com)'
         )
         
-        # Utiliser la requête telle quelle
         page = wiki.page(query)
         print(f"[DEBUG] Titre Wikipedia : {page.title}")
         print(f"[DEBUG] Page trouvée ? {'Oui' if page.exists() else 'Non'}")
 
         if page.exists():
-            summary = page.summary[:500] if page.summary else "Aucun résumé disponible."  # Limité à 500 caractères
+            summary = page.summary[:500] if page.summary else "Aucun résumé disponible."
             return {
                 "type": "wikipedia",
                 "title": page.title,
@@ -110,10 +106,9 @@ def get_response():
     knowledge = load_knowledge()
     response = process_message(user_id, user_message, knowledge)
     
-    # Si la réponse est un dictionnaire (Wikipedia), on le retourne tel quel
     if isinstance(response, dict):
         return json.jsonify(response)
-    # Sinon, on encapsule dans un format standard
+    
     return json.jsonify({
         "type": "text",
         "message": response
@@ -123,7 +118,7 @@ def get_response():
 # 🤖 Traitement principal des messages
 # ============================================
 
-conversation_context = {}  # 📌 Contexte utilisateur global
+conversation_context = {}
 
 def process_message(user_id, message, knowledge):
     global conversation_context
@@ -134,23 +129,19 @@ def process_message(user_id, message, knowledge):
     if user_id in conversation_context:
         context = conversation_context[user_id]
 
-        # 🔍 Mode recherche
         if context.get("mode") == "recherche":
             conversation_context.pop(user_id)
             return perform_web_search_scrape(message)
 
-        # 👂 Attente de question après "oui"
         if context.get("mode") == "en_attente_question":
             conversation_context.pop(user_id)
             return "Je t'écoute, pose ta question !"
 
-        # ✅ Réponses oui / non
         if message in ["oui", "yes", "ok"]:
             return handle_positive_response(user_id)
         elif message in ["non", "no"]:
             return handle_negative_response(user_id)
 
-    # 🔧 Interprétation automatique sans slash pour certaines commandes (heure, date, jour, temps)
     command_map = {
         "heure": ("get_time", "Il est {result}"),
         "date": ("get_date", "Nous sommes le {result}"),
@@ -163,20 +154,18 @@ def process_message(user_id, message, knowledge):
             result = globals()[func_name]()
             return response_format.format(result=result)
 
-    # 🔎 Recherche dans les réponses définies
     if "reponses" in knowledge:
         words = message.split()
         for key, data in knowledge["reponses"].items():
             if any(kw in words for kw in data.get("keywords", [])):
                 return random.choice(data.get("reponses", []))
 
-    # 🔧 Fonctions dynamiques personnalisées (avec JSON knowledge)
     for key, data in knowledge.items():
         if key == "reponses":
             continue
         if key in message:
             if "function" in data:
-                result = globals()[data["function"]]()  # Exécuter la fonction
+                result = globals()[data["function"]]()
                 return data["response"].format(**{key: result})
             return data["response"]
 
