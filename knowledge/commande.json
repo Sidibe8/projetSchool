@@ -1,0 +1,11 @@
+{
+    "/aide": {
+      "description": "Afficher la liste des commandes disponibles.",
+      "action": "builtin"
+    },
+    "/recherche": {
+      "description": "Activer le mode de recherche. Vous pouvez ensuite poser une question libre.",
+      "action": "activate_search_mode"
+    }
+  }
+  
