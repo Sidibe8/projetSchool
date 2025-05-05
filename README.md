@@ -102,4 +102,4 @@ Si les réponses de base ne fonctionnent pas :
 MIT License - Libre d'utilisation et de modification
 
 ## 🙏 Crédits
-Développé par [Dinhojr] - [yorosidibe@arrowbaze.com]
+Développé par Dinhojr - yorosidibe@arrowbaze.com
