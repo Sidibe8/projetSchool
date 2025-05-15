@@ -16,7 +16,7 @@ DeepThink est un chatbot intelligent développé avec Flask qui peut :
 ### Étapes d'installation
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/votre-repo/deepthink-chatbot.git
+   git clone https://github.com/Sidibe8/projetSchool.git
    cd deepthink-chatbot
    ```
 

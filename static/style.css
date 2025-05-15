@@ -385,3 +385,107 @@ body {
     font-size: 0.95rem;
     color: #333;
 }
+
+.message-content {
+    position: relative;
+    padding-bottom: 30px; /* Espace pour les boutons */
+}
+
+
+
+
+/* Ajoutez ces styles à votre CSS existant */
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid var(--primary-color);
+    white-space: pre-wrap;
+    margin: 0 auto;
+    /* letter-spacing: 0.1em; */
+    animation: blink-caret 0.70s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color); }
+}
+
+.message-content {
+    position: relative;
+    padding-bottom: 30px; /* Espace pour les boutons */
+}
+
+.message-actions {
+    position: absolute;
+    /* right: 10px; */
+    bottom: 5px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.message-content:hover .message-actions {
+    opacity: 1;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--dark-color);
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.bot-message .action-btn {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.bot-message .action-btn:hover {
+    background: var(--dark-color);
+    color: white;
+}
+
+
+.stop-speak-btn {
+    background: rgba(255, 0, 0, 0.1) !important;
+    color: #f72585 !important;
+}
+
+.stop-speak-btn:hover {
+    background: #f72585 !important;
+    color: white !important;
+}
+
+/* Animation pendant la lecture */
+.speaking .message-content {
+    position: relative;
+}
+
+.speaking .message-content::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    animation: speakingProgress 3s linear infinite;
+}
+
+@keyframes speakingProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
