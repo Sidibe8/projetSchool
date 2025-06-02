@@ -45,6 +45,14 @@
       "Je fonctionne à merveille, merci de demander !"
     ]
   },
+  "seul": {
+    "keywords": [
+       "Je me sens seul"
+    ],
+    "reponses": [
+      "Je suis là pour toi. Parlons-en.❤"
+    ]
+  },
   "aide": {
     "keywords": [
       "aide",
